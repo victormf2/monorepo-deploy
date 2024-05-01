@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+env:
+  MY_ENV: myenvhein
+
 jobs:
   affected_services:
     name: Determine affected services
