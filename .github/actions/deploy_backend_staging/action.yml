@@ -9,3 +9,7 @@ runs:
     - name: Env
       shell: bash
       run: echo $MY_ENV
+
+    - name: Env Repo
+      shell: bash
+      run: echo ${{ vars.MY_VAR }}
