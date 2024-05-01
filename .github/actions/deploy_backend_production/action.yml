@@ -1,0 +1,6 @@
+name: 'Deploy backend production'
+runs:
+  using: composite
+  steps:
+    - name: Build
+      run: echo "Deploy backend production"
