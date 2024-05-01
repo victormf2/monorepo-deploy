@@ -5,3 +5,7 @@ runs:
     - name: Build
       shell: bash
       run: echo "Deploy backend staging"
+
+    - name: Env
+      shell: bash
+      run: echo $MY_ENV
