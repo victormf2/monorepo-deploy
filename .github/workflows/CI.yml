@@ -32,7 +32,7 @@ jobs:
 
   frontend_production:
     name: Deploy frontend production
-    environment: Production
+    environment: Frontend-Production
     needs:
       - frontend_staging
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
 
   backend_production:
     name: Deploy backend production
-    environment: Production
+    environment: Backend-Production
     needs:
       - backend_staging
     runs-on: ubuntu-latest
