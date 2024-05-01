@@ -7,11 +7,11 @@ on:
       - main
 
 jobs:
-  determine_services:
+  affected_services:
     name: Determine affected services
     runs-on: ubuntu-latest
     outputs:
-      services: ${{ fromJSON(steps.determine_services.outputs.results) }}
+      services: ${{ steps.determine_services.outputs.results }}
     steps:
       - name: Determine affected services
         id: determine_services
@@ -23,9 +23,9 @@ jobs:
 
   frontend_staging:
     name: Deploy frontend staging
-    needs: determine_services
+    needs: affected_services
     runs-on: ubuntu-latest
-    if: ${{ needs.determine_services.outputs.services.frontend }}
+    if: ${{ fromJSON(needs.affected_services.outputs.services).frontend }}
     steps:
       - name: Build
         run: echo "Deploy frontend staging"
@@ -43,9 +43,9 @@ jobs:
 
   backend_staging:
     name: Deploy backend staging
-    needs: determine_services
+    needs: affected_services
     runs-on: ubuntu-latest
-    if: ${{ needs.determine_services.outputs.services.backend }}
+    if: ${{ fromJSON(needs.affected_services.outputs.services).backend }}
     steps:
       - name: Build
         run: echo "Building backend"
