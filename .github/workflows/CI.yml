@@ -16,6 +16,7 @@ jobs:
       - name: Determine affected services
         id: determine_services
         run: |
+          chmod +x ./determine_services.sh
           services=$(./determine_services.sh)
           echo "::set-output name=services::$services"
 
