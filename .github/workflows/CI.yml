@@ -18,7 +18,7 @@ jobs:
         run: |
           chmod +x ./determine_services.sh
           services=$(./determine_services.sh)
-          echo "::set-output name=services::$services"
+          echo "services=$services" >> $GITHUB_OUTPUT
 
   build_frontend:
     name: Build frontend
