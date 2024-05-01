@@ -27,8 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ fromJSON(needs.affected_services.outputs.services).frontend }}
     steps:
-      - name: Build
-        run: echo "Deploy frontend staging"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./.github/actions/deploy_frontend_staging
 
   frontend_production:
     name: Deploy frontend production
@@ -38,8 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && !cancelled() && needs.frontend_staging.result == 'success'
     steps:
-      - name: Build
-        run: echo "Deploy frontend production"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./.github/actions/deploy_frontend_production
 
   backend_staging:
     name: Deploy backend staging
@@ -47,8 +51,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ fromJSON(needs.affected_services.outputs.services).backend }}
     steps:
-      - name: Build
-        run: echo "Building backend"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./.github/actions/deploy_backend_staging
 
   backend_production:
     name: Deploy backend production
@@ -58,5 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && !cancelled() && needs.backend_staging.result == 'success'
     steps:
-      - name: Build
-        run: echo "Deploy backend production"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./.github/actions/deploy_backend_production
