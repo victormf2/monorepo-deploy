@@ -1,0 +1,6 @@
+name: 'Deploy frontend staging'
+runs:
+  using: composite
+  steps:
+    - name: Build
+      run: echo "Deploy frontend staging"
